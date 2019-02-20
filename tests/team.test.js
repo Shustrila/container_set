@@ -1,5 +1,5 @@
-import Team from '../src/js/team.js';
-import Character from '../src/js/character.js';
+import Team from '../src/js/team';
+import Character from '../src/js/character';
 
 const characters = {
   1: new Character('Character 1', 'magician', 2),
@@ -18,7 +18,7 @@ describe('TEST: Team', () => {
     team.add(characters['4']);
     team.add(characters['5']);
 
-    expect(() => team.add()).toThrow();
+    expect(() => team.add(characters['6'])).toThrow('in team can be only 5 characters');
   });
 
   test('characters should not be repeated', () => {
@@ -26,11 +26,9 @@ describe('TEST: Team', () => {
 
     team.add(characters['1']);
     team.add(characters['2']);
-    team.add(characters['2']);
 
-    expect(() => team.add()).toThrow();
+    expect(() => team.add(characters['2'])).toThrow('characters should not be repeated');
   });
-
 
   test('add all the characters and sort of a repetition', () => {
     const team = new Team();
@@ -50,7 +48,7 @@ describe('TEST: Team', () => {
     expect(team.characters).toEqual(expected);
   });
 
-  test('', () => {
+  test('1', () => {
     const team = new Team();
     team.addAll(characters['1'], characters['2']);
 
